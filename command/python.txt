@@ -1,0 +1,17 @@
+conda activate myenv                          $ Here, my_environment name is akc
+conda deactivate
+
+---------
+How to install spyder in virtual environment? 
+
+I activated my environment and then, tried:
+conda install spyder       (IT WORKS)       pip3 install spyder didn't work
+Then, I installed all the libraries under the virtual environment
+---------
+Note:
+
+getting admin access
+install miniconda               (remember to download macbook version and M2 chip)
+setting local envi for python
+
+install hiveTerminal (use it)
