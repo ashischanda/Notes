@@ -1,3 +1,71 @@
-copy file:
-cp source destination
+>> File download command: copy from server to local_pc
+scp  akchanda@goldml-edge.gso.aexp.com:/adshome/akchanda/novanlp/model_refresh.zip /Users/akchanda/
 
+scp  /Users/akchanda/a.csv akchanda@goldml-edge.gso.aexp.com:/axp/rim/novanlp/dev/akchanda/ 
+>> File copy to current directory: add a dot or period as second parameter
+cp source_file .
+--------------------
+>> how could we copy all the HTML files from one directory to another, 
+but only copy files that do not exist in the destination directory or 
+are newer than the versions in the destination directory?
+
+cp -u *.html destination
+
+>> Any file beginning with “b” and ending with “.txt”
+cp b*.html destination    
+
+>> All the files in dir1 are copied into dir2
+cp dir1/* dir2
+---------------------
+>> The 'mv' command performs both file moving and file renaming.
+mv file1 file2
+
+---------------------
+>> Remove file:
+rm filename
+rm 00000*
+
+>> remove directory
+rm -r directory
+
+>> Force to delete
+rm -rf directory    
+---------------------
+>> It prints out three numbers: lines, words, and bytes contained in output.txt. 
+
+wc output.txt 
+7902 64566 503634 output.txt
+
+wc -l filename             # returns only line number
+---------------------
+>> grep is a powerful program used to find text patterns within files. 
+grep pattern filename
+
+>> Grep also used for file searching.
+ls -lth |grep ".docx"     # Showing word_doc file list
+---------------------
+>> Reading sample lines of a File:
+head filename
+tail filename
+
+>> Reading a file in progress (running a code) with force command:
+tail -f filename
+
+>> Press clt+c to stop.
+---------------------
+>> Keyboard short cut:
+
+clt+a             moving cursor to beginning
+clt+e 					  moving cursor to end
+clt+d 					  Delete the character at cursor location
+clt+l      				Same as clear command
+---------------------
+>> history                   Showing command history
+
+!88                       Going back to 88 command line from history
+!ssh                      Going back to ssh command line from history
+                          Or, type 'ssh' then press to 'tab'                       
+---------------------
+>> check disk space:
+df -h
+df -h /raid/akchanda
