@@ -1,0 +1,18 @@
+>> Running hive file: 
+Create a run.sh script with file type info
+
+nohup ./run.sh &
+tail -f nohup.out                   
+cat 0000* > new_filename            # merging mutiple files to a new one
+head filename
+
+Note:
+Nohup, short for no hang up is a command in Linux systems that keep processes 
+running even after exiting the shell or terminal. 
+
+>> Present service: To check if jobs are running or not
+ps
+ps -ef | grep akchanda
+
+ls -lth
+ls -ltha
