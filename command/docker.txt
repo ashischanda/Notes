@@ -1,0 +1,86 @@
+>> Log into DGX on GoldML
+ssh goldml-edge.gso.aexp.com -o "UserKnownHostsFile=/dev/null" 
+ssh lgpbddgx03      
+
+>> change to your work directory
+cd /axp/rim/novanlp/dev/akchanda
+
+>> clone project from GitHub
+git clone ....
+
+>> change your command to 'bash'
+bash
+
+>> You can check your bash_profile page to set AWS. It should be in your root directory. To access that follow the command
+vi ~/.bash_profile
+
+---------------------------------
+>> Create a branch of the project. So that if you make any change, it won't have effect on main_branch
+git checkout -b model/akc_uk_ivr-v.1.0
+git status
+---------------------------------
+>> go in a project to work on the existing one. Activate their environment
+source /axp/rim/novanlp/dev/env/nova-nlp/bin/activate
+[now, you can see dvc command here. type: dvc]
+[Activate your bash profile]
+source ~/.bash_profile
+export_aws_keys
+
+
+dvc import https://docker.aexp.com/modelautomation/askamex-model-dataset-registry intent_classification/uk_intent/dataset --rev main -o dataset
+ERROR: unexpected error - Forbidden: An error occurred (403) when calling the HeadObject operation: Forbidden
+=============================================================
+Keep your coding_files into DGX because you are going to run in GPU
+cd /raid/akchanda/
+
+
+Docker:
+
+Docker image: 
+https://hub.docker.com/layers/huggingface/transformers-pytorch-gpu/4.18.0/images/sha[…]5aac2001461f50cd459d1c21709d90151ad3804a477d3?context=explore
+
+How to start a docker container from docker image:
+docker run -itd -e NVIDIA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 --shm-size=16g --ulimit memlock=-1 --runtime=nvidia --rm --ipc=host  -w /work/ -v ${PWD}:/work --name ivr_intent dockerproxy.aexp.com/huggingface/transformers-pytorch-gpu:4.18.0 bash
+
+Then to start the container: docker exec -it ivr_intent bash
+
+
+load_proxy(){
+	url=http://proxy.aexp.com:8080
+	export HTTP_PROXY=${url}
+	export HTTPS_PROXY=${url}
+	export http_proxy=${url}
+	export https_proxy=${url}
+	export ALL_PROXY=${url}
+	export NO_PROXY=locahost,*.aexp.com192.168.99.1/24
+}
+
+load_proxy
+
+stop container: exit
+=============================================================
+Checking cuda or gpu:
+gpustat
+
+running code using cuda:
+CUDA_VISIBLE_DEVICES=3 nohup python3 run_text_clf.py params_akc.yaml > nohup.out &
+
+running code using cuda in python code:
+import os
+os.environ['CUDA_VISIBLE_DEVICES']='3'
+
+
+data path: 
+/axp/rim/novanlp/dev/kliu26/public/IVR_main/data/IVR_data_v2/v2/production_v5
+/axp/rim/novanlp/dev/kliu26/public/IVR_main/README.md
+
+Model refresh:
+/axp/rim/novanlp/dev/kliu26/public/IVR_main/model_performance_tracking/model_accuracy_v11
+/axp/rim/novanlp/dev/kliu26/IVR_main/AIO/model_refresh/full_scale_splunk_data/first_1k_tasks
+-------------------------------------------------------
+Github clone: use http link
+git clone link
+
+Github token: use it as password. user name is same as ads name.
+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
+=============================
